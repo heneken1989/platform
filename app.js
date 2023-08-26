@@ -10,30 +10,8 @@ var bookRouter = require('./routes/book');
 
 var app = express();
 
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb://127.0.0.1:27017/mydb',{useNewUrlParser:true})
-// const mongoose = require('mongoose');
-
-
-
 const mongoose = require('mongoose');
-// Use the environment variables provided by Railway
-const mongoUri = 'mongodb://mongo:gwb0NLZp0RhdiYc1i9do@containers-us-west-77.railway.app:6420';
-
-// Connect to MongoDB
-mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-
+mongoose.connect('mongodb://mongo:gwb0NLZp0RhdiYc1i9do@containers-us-west-77.railway.app:6420',{useNewUrlParser:true})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
