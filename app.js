@@ -10,8 +10,21 @@ var bookRouter = require('./routes/book');
 
 var app = express();
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/mydb',{useNewUrlParser:true})
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://127.0.0.1:27017/mydb',{useNewUrlParser:true})
+// const mongoose = require('mongoose');
+
+
+const mongoUri = process.env.MONGO_URL; 
+
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
