@@ -1,0 +1,35 @@
+extends ../layout 
+block content 
+ h3 
+   a(href="/book/create")  Create New  
+   div 
+     form(action="/book/search" , method="get")
+       label title 
+       input(name="title")
+       input(type="submit", value="search")
+   
+ h1 List Book
+ table 
+   thead 
+     tr 
+        th ID 
+        th Title
+        th Price
+        th Image 
+        th Actions 
+   tbody 
+      if books != null 
+        each item in books 
+          tr 
+            td=item._id
+            td=item.title
+            td=item.price
+            td
+               img(src=`/images/${item.image}`, alt=`images/${item.image}`)
+            td 
+                a(href=`/book/edit/${item.id}`) Update
+                a(href=`/book/delete/${item.id}`) Delete  
+
+      else 
+        tr 
+          td(colspan='5') NoData     
