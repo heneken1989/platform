@@ -15,14 +15,23 @@ var app = express();
 // const mongoose = require('mongoose');
 
 
-const mongoUri = process.env.MONGO_URL; 
 
+const mongoose = require('mongoose');
+// Use the environment variables provided by Railway
+const mongoUri = 'mongodb://mongo:gwb0NLZp0RhdiYc1i9do@containers-us-west-77.railway.app:6420';
+
+// Connect to MongoDB
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
 
 
 
