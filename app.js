@@ -10,8 +10,10 @@ var bookRouter = require('./routes/book');
 
 var app = express();
 
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://mongo:gwb0NLZp0RhdiYc1i9do@containers-us-west-77.railway.app:6420',{useNewUrlParser:true})
+// mongoose.connect('mongodb://mongo:gwb0NLZp0RhdiYc1i9do@containers-us-west-77.railway.app:6420',{useNewUrlParser:true})
+mongoose.connect(process.env.MONGO_URL);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
